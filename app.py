@@ -78,7 +78,6 @@ def generate_slides():
         points = slide_text.split("\n")
         for point in points:
             content_slide.text_frame.add_paragraph().text = point
-
     # Save the presentation
     print("Before Save is called")
     presentation.save(r"C:\Users\dell\Desktop\Slide Generator\SlidesGenerator\templates\output.pptx")
@@ -90,3 +89,4 @@ def generate_slides():
 
 if __name__ == "__main__":
     app.run(host="192.168.56.1", port=9000, debug=True)
+
