@@ -4,7 +4,7 @@ import requests
 from flask import Flask, render_template, request, jsonify
 from pptx import Presentation
 
-API_KEY = "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"
+API_KEY = "KEYHERE"
 
 app = Flask(__name__)
 slides = []
