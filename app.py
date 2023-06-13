@@ -16,6 +16,7 @@ def index():
 
     prompt = f'''
     Prepare {num_slides} slides about {title} for {grade} grade students. You must be following the structure of the example given below, where each heading must contain 4 bullet points
+    Moreover, return response in Json format.
     Example: Title: "Unbalanced trees"
     1. If a BST is not balanced, its time complexity can degrade to O(n)
     2. Inefficient operations: BSTs do not provide efficient support for some operations such as finding the kth smallest 
