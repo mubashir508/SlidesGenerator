@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slide Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #74ebd5;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #ACB6E5, #74ebd5);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #ACB6E5, #74ebd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+
+        .container {
+            text-align: center;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Slide Generator</h1>
+        <form action="/" method="GET">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="grade">Grade:</label>
+                <select class="form-control" id="grade" name="grade" required>
+                    <option value="">Select Grade</option>
+                    <option value="1">1st Grade</option>
+                    <option value="2">2nd Grade</option>
+                    <option value="3">3rd Grade</option>
+                    <option value="4">4th Grade</option>
+                    <option value="5">5th Grade</option>
+                    <option value="6">6th Grade</option>
+                    <option value="7">7th Grade</option>
+                    <option value="8">8th Grade</option>
+                    <option value="9">9th Grade</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="num_slides">Number of Slides:</label>
+                <select class="form-control" id="num_slides" name="num_slides" required>
+                    <option value="">Select Number of Slides</option>
+                    <option value="5">5 Slides</option>
+                    <option value="10">10 Slides</option>
+                    <option value="15">15 Slides</option>
+                    <option value="20">20 Slides</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Generate Slides</button>
+        </form>
+
+        {% if slides %}
+            <h2>Generated Slides:</h2>
+            <ul class="list-group">
+            {% for slide in slides %}
+                <li class="list-group-item">{{ slide }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
