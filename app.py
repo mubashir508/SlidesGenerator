@@ -2,9 +2,11 @@ import json
 import os
 import requests
 from flask import Flask, render_template, request, jsonify
+import collections 
+import collections.abc
 from pptx import Presentation
 
-API_KEY = "KEYHERE"
+API_KEY = "KEY"
 
 app = Flask(__name__)
 slides = []
@@ -36,32 +38,28 @@ def index():
             "max_tokens": 2000,
         }
     )
-
-
     response_json = response.json()
-    print(response_json)
+    #print(response_json)
     slides = response_json["choices"][0]["text"].split("\n")
-    return render_template("index.html", slides=slides)
+    # print(slides)
+    # this variable is for testing slides variable indexing
+    slide_list = slides
+    # print(slide_list)
+    slide_list_filtered = [slide for slide in slide_list if slide != '']
 
-@app.route("/generate", methods=["GET"])
-def generate_slides():
-    title = request.args.get("title")
-    num_slides = request.args.get("num_slides")
     presentation = Presentation()
-    for slide_text in slides:
-        slide_layout = presentation.slide_layouts[1]  # Choose the slide layout (Title and Content)
-        slide = presentation.slides.add_slide(slide_layout)
-        title_shape = slide.shapes.title
-        title_shape.text = title
+    for i in range(0, len(slide_list_filtered), 2):
+        slide_number = slide_list_filtered[i]
+        slide_description = slide_list_filtered[i + 1] if i + 1 < len(slide_list_filtered) else ""
+        slide = presentation.slides.add_slide(presentation.slide_layouts[1])
+        title = slide.shapes.title
+        title.text = slide_number
+        content = slide.placeholders[1]
+        content.text = slide_description
 
-        content_slide = slide.placeholders[1]
-        points = slide_text.split("\n")
-        for point in points:
-            content_slide.text_frame.add_paragraph().text = point
-    print("Before Save is called")
     presentation.save(r"C:\Users\dell\Desktop\Slide Generator\SlidesGenerator\templates\output.pptx")
-    print("Slides created successfully!")
-    return "Slides created successfully!"
+
+    return render_template("index.html", slides=slides)
 
 if __name__ == "__main__":
     app.run(host="192.168.56.1", port=9000, debug=True)
