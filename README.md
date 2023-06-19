@@ -1,4 +1,4 @@
-# Slide Generator
+# Slides Generator
 
 Slide Generator is a web application that generates slide content based on user input. It utilizes the OpenAI GPT-3.5 language model to generate educational slide content for various grades.
 
