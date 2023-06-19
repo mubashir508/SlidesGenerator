@@ -33,6 +33,7 @@ def index():
     response_json = response.json()
     slides = response_json["choices"][0]["text"].split("\n")
     slide_list = slides
+
     slide_list_filtered = [slide for slide in slide_list if slide != '']
     presentation = Presentation()
     for i in range(0, len(slide_list_filtered), 2):
