@@ -1,4 +1,3 @@
-# THIS CODE AIMS AT INTEGRATING THE CORRECT IMAGE DOWNLOADING WITH THE MODIFIED PROMPT GENERATORS
 import requests
 import os
 from flask import Flask, render_template, request, jsonify
@@ -94,8 +93,8 @@ The solar system is about 4.6 billion years old.
             image_path = image_urls[0]
             image = slide.shapes.add_picture(image_path, Inches(4), Inches(1), width=Inches(4), height=Inches(4))
     presentation.save(r"C:\Users\dell\Desktop\Slide Generator\SlidesGenerator\templates\output.pptx")
+    for i in range(int(num_slides)):
+        os.remove(f"image_{i}.jpg")
     return render_template("index.html", slides=slides)
 if __name__ == "__main__":
     app.run(host="192.168.56.1", port=9000, debug=True)
-
-# THIS CODE HAS THE 'changed' PROMPT
